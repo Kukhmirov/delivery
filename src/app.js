@@ -7,7 +7,6 @@ const {passport} = require('./config/config.passport');
 const chatsModule = require('./modules/chatsModule');
 
 
-
 const app = express();
 const server = http.Server(app);
 const io = socketIO(server)
@@ -32,7 +31,6 @@ io.use(wrap(passport.initialize()));
 io.use(wrap(passport.session()));
 
 const onConnection = (socket) => {
-
     if (!socket.request.isAuthenticated || !socket.request.isAuthenticated()) {
         console.log("Пользователь неавторизован ", socket.id);
     } else { 

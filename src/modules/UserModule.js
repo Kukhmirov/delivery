@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModels.js');
 
-
 class UserModel {
     static getUserData = (user) => {
         const {_id, email, name, contactPhone} = user;

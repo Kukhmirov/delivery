@@ -24,7 +24,6 @@ class ChatsModule {
     static sendMessage = async function(author, receiver, message) {
         console.log('Function sendMessage:', author, '/', receiver, '/', message); //*
 
-        //creating
         const newMessage = new Message ({
             author,
             sentAt: new Date(),
@@ -33,7 +32,6 @@ class ChatsModule {
         
         let messageId;
         
-        //Save in DB
         try {
             const savedMessage = await newMessage.save();
             messageId = savedMessage.id;
@@ -46,13 +44,12 @@ class ChatsModule {
                             chatId: foundChat.id
                         };
                     } else {
-                        // The chat needs to be created...
                         const newChat = new Chat({
                             users: [author, receiver],
                             createdAt: new Date(), 
                             messages: [], 
                         });                         
-                        try { // ...saved...
+                        try {
                             const savedChat = await newChat.save();
                             await chatUpdate(savedChat.id, [], messageId);
                             return {
